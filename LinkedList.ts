@@ -14,6 +14,14 @@ export class LinkedList {
         }
     }
 
+    find(value: number) {
+        let current: Node = this._head;
+        while(current) {
+            if(current.value === value) return true;
+        }
+        return false;
+    }
+
     add(value: number): void {
         if(!this._head) this._head = new Node(value);
         else {
@@ -23,6 +31,23 @@ export class LinkedList {
             }
             current.next = new Node(value);
         }
+    }
+
+    remove(value: number): boolean {
+        let current: Node = this._head;
+        let prev: Node;
+
+        while(current) {
+            if(current.value === value) {
+                if(current === this._head) this._head = current.next;
+                else prev.next = current.next;
+                return true;
+            } else {
+                prev = current;
+                current = current.next;
+            }
+        }
+        return false;
     }
 }
 
