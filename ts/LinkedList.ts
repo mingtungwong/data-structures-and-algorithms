@@ -6,6 +6,9 @@ export class LinkedList {
         this._head = new Node(value);
     }
 
+    /**
+     * Logs to console all of the nodes in the linked list.
+     */
     print(): void {
         let current: Node = this._head;
         while(current) {
@@ -14,6 +17,10 @@ export class LinkedList {
         }
     }
 
+    /**
+     * Searches the linked list for the value, returns true if found, false otherwise.
+     * @param value The value to search for
+     */
     find(value: number) {
         let current: Node = this._head;
         while(current) {
@@ -22,6 +29,10 @@ export class LinkedList {
         return false;
     }
 
+    /**
+     * Adds the value to the end of the linked list.
+     * @param value Value to add to the end of the linked list.
+     */
     add(value: number): void {
         if(!this._head) this._head = new Node(value);
         else {
@@ -33,6 +44,11 @@ export class LinkedList {
         }
     }
 
+    /**
+     * Searches the linked list for the specified value and removes it if found.
+     * If found and successfully removed, returns true, false otherwise.
+     * @param value Value to remove from the linked list
+     */
     remove(value: number): boolean {
         let current: Node = this._head;
         let prev: Node;
