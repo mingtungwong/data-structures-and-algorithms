@@ -14,6 +14,7 @@ export class DynamicArray {
 
     add(value: any, index?: number): void {
         if(index !== undefined) {
+            if(index < 0 || index >= this.capacity) throw new Error("Array Index Out of Bounds");
             for(let i: number = this.currentIndex; i > index; i--) {
                 this.array[i] = this.array[i - 1];
             }
@@ -22,6 +23,10 @@ export class DynamicArray {
         }
         else this.array[this.currentIndex++] = value;
         if(this.currentIndex / this.capacity > this.threshold) this.doubleCapacity();
+    }
+
+    size(): number {
+        return this.capacity;
     }
 
     print(): void {
