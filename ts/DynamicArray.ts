@@ -25,6 +25,20 @@ export class DynamicArray {
         if(this.currentIndex / this.capacity > this.threshold) this.doubleCapacity();
     }
 
+    indexOf(value: number): number {
+        for(let i: number = 0; i < this.currentIndex; i++) {
+            if(value === this.array[i]) return i;
+        }
+        return -1;
+    }
+
+    lastIndexOf(value: number): number {
+        for(let i: number = this.currentIndex - 1; i >= 0; i--) {
+            if(value === this.array[i]) return i;
+        }
+        return -1;
+    }
+
     size(): number {
         return this.capacity;
     }
