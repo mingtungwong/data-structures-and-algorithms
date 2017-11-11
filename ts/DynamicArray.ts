@@ -12,18 +12,25 @@ export class DynamicArray {
         this.currentIndex = 0;
     }
 
-    add(value: any) {
-        this.array[this.currentIndex++] = value;
+    add(value: any, index?: number): void {
+        if(index !== undefined) {
+            for(let i: number = this.currentIndex; i > index; i--) {
+                this.array[i] = this.array[i - 1];
+            }
+            this.array[index] = value;
+            this.currentIndex++;
+        }
+        else this.array[this.currentIndex++] = value;
         if(this.currentIndex / this.capacity > this.threshold) this.doubleCapacity();
     }
 
-    print() {
+    print(): void {
         for(let value of this.array) {
             console.log(value);
         }
     }
 
-    private doubleCapacity() {
+    private doubleCapacity(): void {
         this.capacity *= 2;
         let newArray = new Array(this.capacity);
         for(let i: number = 0; i < this.currentIndex; i++) {
