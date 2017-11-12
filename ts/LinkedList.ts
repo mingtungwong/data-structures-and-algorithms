@@ -22,7 +22,7 @@ export class LinkedList {
      * Searches the linked list for the value, returns true if found, false otherwise.
      * @param value The value to search for
      */
-    find(value: number) {
+    find(value: number): boolean {
         let current: Node = this._head;
         while(current) {
             if(current.value === value) return true;
@@ -95,7 +95,7 @@ export class LinkedList {
     /**
      * Returns a string representation of the Linked List.
      */
-    toString() {
+    toString(): string {
         let elements: number[] = [];
         let current: Node = this._head;
         while(current) {
