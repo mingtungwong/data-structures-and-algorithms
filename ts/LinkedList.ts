@@ -4,7 +4,7 @@ export class LinkedList {
     private _tail: Node;
 
     constructor(value?: number) {
-        this._head = this._tail = value === undefined ? null : new Node(value);
+        this._tail = this._head = value === undefined ? null : new Node(value);
     }
 
     /**
@@ -34,14 +34,11 @@ export class LinkedList {
      * Adds the value to the end of the linked list.
      * @param value Value to add to the end of the linked list.
      */
-    add(value: number): void {
-        if(!this._head) this._head = new Node(value);
+    addToEnd(value: number): void {
+        if(!this._head) this._tail = this._head = new Node(value);
         else {
-            let current: Node = this._head
-            while(current.next) {
-                current = current.next;
-            }
-            current.next = new Node(value);
+            let newNode = new Node(value);
+            this._tail = this._tail.next = newNode;
         }
     }
 
