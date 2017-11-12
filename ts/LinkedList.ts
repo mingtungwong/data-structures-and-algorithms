@@ -37,9 +37,32 @@ export class LinkedList {
     addToEnd(value: number): void {
         if(!this._head) this._tail = this._head = new Node(value);
         else {
-            let newNode = new Node(value);
+            let newNode: Node = new Node(value);
             this._tail = this._tail.next = newNode;
         }
+    }
+
+    /**
+     * Adds the value to the beginning of the Linked List.
+     * @param value Value to add to the beginning of the linked list.
+     */
+    addToBeginning(value: number) : void {
+        if(!this._head) this._tail = this._head = new Node(value);
+        else {
+            let newNode: Node = new Node(value);
+            newNode.next = this._head;
+            this._head = newNode;
+        }
+    }
+
+    //Returns the value of the head of the Linked List.
+    getHead(): number {
+        return this._head ? this._head.value : null;
+    }
+
+    //Returns the value of the tail of the Linked List.
+    getTail(): number {
+        return this._tail ? this._tail.value : null;
     }
 
     /**
