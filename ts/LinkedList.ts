@@ -86,6 +86,16 @@ export class LinkedList {
         }
         return false;
     }
+
+    toString() {
+        let elements: number[] = [];
+        let current: Node = this._head;
+        while(current) {
+            elements.push(current.value);
+            current = current.next;
+        }
+        return elements.join(' -> ');
+    }
 }
 
 class Node {
