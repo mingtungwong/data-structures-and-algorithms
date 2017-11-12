@@ -76,7 +76,12 @@ export class LinkedList {
 
         while(current) {
             if(current.value === value) {
-                if(current === this._head) this._head = current.next;
+                if(current === this._head && current === this._tail) this._tail = this._head = null;
+                else if(current === this._head) this._head = current.next;
+                else if(current === this._tail) {
+                    prev.next = null;
+                    this._tail = prev;
+                }
                 else prev.next = current.next;
                 return true;
             } else {
@@ -87,6 +92,9 @@ export class LinkedList {
         return false;
     }
 
+    /**
+     * Returns a string representation of the Linked List.
+     */
     toString() {
         let elements: number[] = [];
         let current: Node = this._head;
