@@ -1,9 +1,10 @@
 export class LinkedList {
     
     private _head: Node;
+    private _tail: Node;
 
-    constructor(value: number) {
-        this._head = new Node(value);
+    constructor(value?: number) {
+        this._head = this._tail = value === undefined ? null : new Node(value);
     }
 
     /**
