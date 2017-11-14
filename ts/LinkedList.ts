@@ -55,6 +55,18 @@ export class LinkedList {
         }
     }
 
+    /**
+     * Removes the head node and returns the value.
+     */
+    removeHead(): number {
+        if(this._head !== null) {
+            let value: number = this._head.value;
+            this._head = this._head.next;
+            return value;
+        }
+        else return null;
+    }
+
     //Returns the value of the head of the Linked List.
     getHead(): number {
         return this._head ? this._head.value : null;
