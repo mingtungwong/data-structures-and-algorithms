@@ -38,7 +38,7 @@ export class LinkedList {
         if(!this._head) this._tail = this._head = new Node(value);
         else {
             let newNode: Node = new Node(value);
-            let prev: Node = this._tail.prev;
+            let prev: Node = this._tail;
             this._tail = this._tail.next = newNode;
             this._tail.prev = prev;
         }
@@ -53,7 +53,7 @@ export class LinkedList {
         else {
             let newNode: Node = new Node(value);
             newNode.next = this._head;
-            this._head = newNode;
+            this._head = this._head.prev = newNode;
         }
     }
 
@@ -61,13 +61,22 @@ export class LinkedList {
      * Removes the head node and returns the value.
      */
     removeHead(): number {
-        if(this._head !== null) {
+        if(this._head) {
             let value: number = this._head.value;
             this._head = this._head.next;
             this._head.prev = null;
             return value;
         }
         else return null;
+    }
+
+    removeTail(): number {
+        if(this._tail) {
+            let value: number = this._tail.value;
+            this._tail = this._tail.prev;
+            if(this._tail) this._tail.next = null;
+            return value;
+        } else return null;
     }
 
     //Returns the value of the head of the Linked List.
@@ -92,7 +101,10 @@ export class LinkedList {
         while(current) {
             if(current.value === value) {
                 if(current === this._head && current === this._tail) this._tail = this._head = null;
-                else if(current === this._head) this._head = current.next;
+                else if(current === this._head) {
+                    this.removeHead();
+                    return true;
+                }
                 else if(current === this._tail) {
                     prev.next = null;
                     this._tail = prev;
