@@ -38,7 +38,9 @@ export class LinkedList {
         if(!this._head) this._tail = this._head = new Node(value);
         else {
             let newNode: Node = new Node(value);
+            let prev: Node = this._tail.prev;
             this._tail = this._tail.next = newNode;
+            this._tail.prev = prev;
         }
     }
 
@@ -62,6 +64,7 @@ export class LinkedList {
         if(this._head !== null) {
             let value: number = this._head.value;
             this._head = this._head.next;
+            this._head.prev = null;
             return value;
         }
         else return null;
