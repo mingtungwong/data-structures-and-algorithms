@@ -70,6 +70,9 @@ export class LinkedList {
         else return null;
     }
 
+    /**
+     * Removes the tail node and returns the value.
+     */
     removeTail(): number {
         if(this._tail) {
             let value: number = this._tail.value;
@@ -101,15 +104,12 @@ export class LinkedList {
         while(current) {
             if(current.value === value) {
                 if(current === this._head && current === this._tail) this._tail = this._head = null;
-                else if(current === this._head) {
-                    this.removeHead();
-                    return true;
+                else if(current === this._head) this.removeHead();
+                else if(current === this._tail) this.removeTail();
+                else {
+                    current.prev.next = current.next;
+                    current.next.prev = current.prev;
                 }
-                else if(current === this._tail) {
-                    prev.next = null;
-                    this._tail = prev;
-                }
-                else prev.next = current.next;
                 return true;
             } else {
                 prev = current;
