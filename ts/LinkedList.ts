@@ -120,6 +120,7 @@ export class LinkedList {
 
 class Node {
     private _value: number;
+    private _prev: Node;
     private _next: Node;
 
     constructor(value: number) {
@@ -131,6 +132,10 @@ class Node {
         return this._value;
     }
 
+    get prev(): Node {
+        return this._prev;
+    }
+
     get next(): Node {
         return this._next;
     }
@@ -139,7 +144,11 @@ class Node {
         this._value = newValue;
     }
 
-    set next(newNext) {
+    set prev(newPrev: Node) {
+        this._prev = newPrev;
+    }
+
+    set next(newNext: Node) {
         this._next = newNext;
     }
 }
