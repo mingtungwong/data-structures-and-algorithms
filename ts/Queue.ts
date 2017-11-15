@@ -24,4 +24,11 @@ export class Queue {
         if(!result) throw new Error("The queue is empty!");
         else return result;
     }
+
+    /**
+     * Returns a string representation of the queue.
+     */
+    toString(): string {
+        return this._queue.toString().replace(' -> ', ', ');
+    }
 }
