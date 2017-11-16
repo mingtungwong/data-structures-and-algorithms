@@ -17,4 +17,12 @@ export class Stack {
         if(result === null) throw new Error("The stack is empty!");
         else return result;
     }
+
+    toString(): string {
+        return this._stack.toString().replace(' -> ', ', ');
+    }
+
+    print() {
+        console.log(this.toString());
+    }
 }
