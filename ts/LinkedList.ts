@@ -64,7 +64,8 @@ export class LinkedList {
         if(this._head) {
             let value: number = this._head.value;
             this._head = this._head.next;
-            this._head.prev = null;
+            if(this._head !== null) this._head.prev = null;
+            else this._tail = null;
             return value;
         }
         else return null;
@@ -77,19 +78,20 @@ export class LinkedList {
         if(this._tail) {
             let value: number = this._tail.value;
             this._tail = this._tail.prev;
-            if(this._tail) this._tail.next = null;
+            if(this._tail !== null) this._tail.next = null;
+            else this._head = null;
             return value;
         } else return null;
     }
 
     //Returns the value of the head of the Linked List.
     getHead(): number {
-        return this._head ? this._head.value : null;
+        return this._head !== null ? this._head.value : null;
     }
 
     //Returns the value of the tail of the Linked List.
     getTail(): number {
-        return this._tail ? this._tail.value : null;
+        return this._tail !== null ? this._tail.value : null;
     }
 
     /**
@@ -140,6 +142,7 @@ class Node {
 
     constructor(value: number) {
         this._value = value;
+        this._prev = null;
         this._next = null;
     }
 
